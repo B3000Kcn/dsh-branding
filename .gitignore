@@ -6,6 +6,10 @@ coverage/
 .nyc_output/
 test-results/
 
+# Maintainer-local tests and environment-specific validation scripts
+/tests/
+/scripts/check*.mjs
+
 # Local backups and temporary files
 .backups/
 backups/
@@ -65,4 +69,4 @@ Thumbs.db
 Desktop.ini
 
 # Keep dist/client.js: package.json exports it and installation needs the bundle.
-# Keep src/, scripts/, tests/, cordis.patch.yml and the project documentation.
+# Keep src/, scripts/build.mjs, scripts/bundle.mjs, cordis.patch.yml and documentation.

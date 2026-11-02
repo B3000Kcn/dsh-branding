@@ -35,18 +35,18 @@ dsh plugin --profile web add /绝对路径/dsh-branding-0.1.2.tgz
 
 重启 DSH、刷新网页，打开「设置 → 品牌设置」。从同名 `dsh-branding 0.1.0` 或 `0.1.1` 直接安装新版即可，已有图片、侧栏缩放、位移和应用名称设置保留，无需重新上传。新增主界面调整默认 100%／0px。首次安装时图片设置为空；其他品牌插件应先停用，不要同时启用两份品牌插件。
 
-## 开发检查
+## 从源码构建
+
+源码仓库保留插件运行文件和客户端构建脚本。使用符合 `package.json` 要求的 Node.js 版本，在仓库根目录执行：
 
 ```sh
-npm test
-npm run check
-npm run check:compatibility
-npm run check:browser
-node scripts/check-hero-browser.mjs
+npm run build
+npm pack
+sha256sum dsh-branding-0.1.2.tgz > dsh-branding-0.1.2.tgz.sha256
 ```
 
-检查在内存中编译客户端，不刷新发布文件。工作区需已有 jsdom、Puppeteer 与 Chromium，可通过 `DSH_BRANDING_BROWSER_EXECUTABLE` 指定浏览器路径。经用户授权后使用 `npm run build`、`npm pack` 并生成 SHA256 文件。
+构建脚本仅使用 Node.js 内置模块，将 `src/` 编译为 `dist/client.js`；仓库已提供该客户端文件。生成的安装包与校验文件由 `.gitignore` 排除，可单独分发。
 
-主界面浏览器检查使用两个固定版本的真实 Hero CSS、当前源码的内存 bundle 和现有 VCP Agent 样式，模拟两个独立会话的品牌／Agent 区域与插槽，不启动完整 dsh 或 Agent 网络服务。
+维护者本地的测试、浏览器检查脚本及其环境配置不随源码仓库分发。插件使用及源码构建均不需要 jsdom、Puppeteer、Chromium 或相邻工程。
 
 固定核对 DSH `0.2.1-rc.2` 与 `0.2.2-alpha.2`，验证范围见 [COMPATIBILITY.md](COMPATIBILITY.md)。实际实例仍需确认：自定义 favicon 替换窄侧栏鲸鱼、悬停提示和展开点击正常、换图／清空及时生效、图片及标题设置持久化、默认中心避开按钮、日夜独立缩放和位移、话题／面板标题切换，以及停用后恢复原图与原生标题。

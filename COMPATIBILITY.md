@@ -1,5 +1,7 @@
 # 兼容性与验证范围
 
+本文保留维护过程中的验证记录。相关测试与检查脚本仅保留在维护者本地，不随源码仓库分发，也不是插件运行或源码构建的依赖。
+
 独立包 **dsh-branding 0.1.2**。包名、`cordis.patch.yml` 条目 id/name、客户端 ModuleLoader id、`configForms.get('dsh-branding')` 与设置页标识一致；应用名称字段为 `appName`，与同名 0.1.0 版本的配置键保持一致。
 
 主界面横幅功能已纳入 0.1.2 安装包。旧配置缺少 `lightHeroScale`／`darkHeroScale` 时默认 100%，缺少 `lightHeroOffset`／`darkHeroOffset` 时默认 0px。图片继续复用 `lightBanner`／`darkBanner`，不新增图片副本，不修改 dsh 或 Agent 插件。
